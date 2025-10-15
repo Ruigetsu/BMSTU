@@ -9,5 +9,5 @@ else:
             list_of_num[i] == ""
         else: 
             list_of_num[i] = list_of_num[i+1]
-    list_of_num = list_of_num[:-1]
-    print(f"Новый список = {list_of_num}")
+list_of_num = list_of_num[:-1]
+print(f"Новый список = {list_of_num}")
