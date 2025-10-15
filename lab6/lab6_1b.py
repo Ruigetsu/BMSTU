@@ -10,8 +10,8 @@ elif indx == -1 or indx == len(list_of_num)-1:
     print(f"Новый список = {list_of_num}")
 else:
     list_of_num.append(None)
-    for i in range(len(list_of_num)-1,indx-1,-1): 
+    for i in range(len(list_of_num)-1,indx,-1): 
         list_of_num[i] = list_of_num[i-1]
-        if i == indx: 
-            list_of_num[i] = num
+     
+    list_of_num[indx] = num
     print(f"Новый список = {list_of_num}")
