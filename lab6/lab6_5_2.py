@@ -7,6 +7,7 @@ for i in range(len(list_of_num)):
     if list_of_num[i] > 0:
         if min_positive == None: 
             min_positive = list_of_num[i]
+            indx_min_positive = i
         else:
             if list_of_num[i] < min_positive: 
                 min_positive = list_of_num[i]
@@ -14,6 +15,7 @@ for i in range(len(list_of_num)):
     elif list_of_num[i] < 0:
         if max_negative == None: 
             max_negative = list_of_num[i]
+            indx_max_negative = i
         else:
             if list_of_num[i] > max_negative:
                 max_negative  = list_of_num[i]
