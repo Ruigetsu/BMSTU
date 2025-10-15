@@ -8,4 +8,4 @@ for i in range(len(list_of_num)):
     else: 
         list_of_num[i-flag_to_move_left] = list_of_num[i]
 list_of_num = list_of_num[:-flag_to_move_left]
-print(list_of_num)
+print(f"Новый список: {list_of_num}")
