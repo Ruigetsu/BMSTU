@@ -1,17 +1,24 @@
 list_of_num = list(map(int,input("Введите числа через пробел:").split()))
-flag_to_move_right = 0
-is_prev_even = False
-temporary = 0
-for i in range(len(list_of_num)):
-    if list_of_num[i] % 2 == 0: 
-        list_of_num.append(None)
-        flag_to_move_right += 1
-        temporary = list_of_num[i] * 2
-        is_prev_even = True
-    elif is_prev_even: 
-        list_of_num[i], list_of_num[i+1], temporary = temporary, list_of_num[i], list_of_num[i+1]
-        is_prev_even = False
-    else: 
-        list_of_num[i], list_of_num[i+flag_to_move_right], temporary = temporary, list_of_num[i], list_of_num[i+flag_to_move_right]
+counter_even = 0
+indx_origin_list = len(list_of_num) - 1 #Индекс последнего эл. изначального списка
+for i in list_of_num:
+    if i % 2 == 0:
+        counter_even += 1
 
-print(list_of_num)
+list_of_num += [None] * counter_even
+indx_new_list = len(list_of_num) - 1 #Последний индекс нового списка (с пустыми элементами)
+while indx_origin_list >= 0: #Проходимся по каждому элементу начального списка
+    cur_num = list_of_num[indx_origin_list]
+
+    if cur_num % 2 == 0: 
+        list_of_num[indx_new_list] = cur_num*2 #вставляем на текущее место удвоенное значение чет. элемент.
+        indx_new_list -= 1 #Перемещаемся на 1 влево
+        list_of_num[indx_new_list] = cur_num #Вставляем значение чет. элемент.
+        indx_new_list -= 1 #Сдвигаемся влево
+    else: 
+        list_of_num[indx_new_list] = cur_num 
+        indx_new_list -= 1
+
+    indx_origin_list -= 1 #Берем следующий элемент ориг. списка
+
+print(f'Новый список: {list_of_num}')
