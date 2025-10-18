@@ -11,14 +11,11 @@ while indx_origin_list >= 0: #Проходимся по каждому элем�
     cur_num = list_of_num[indx_origin_list]
 
     if cur_num % 2 == 0: 
-        list_of_num[indx_new_list] = cur_num*2
+        list_of_num[indx_new_list] = cur_num * 2 
         indx_new_list -= 1
-        list_of_num[indx_new_list] = cur_num
-        indx_new_list -= 1
-    else: 
-        list_of_num[indx_new_list] = cur_num
-        indx_new_list -= 1
-
+    
+    list_of_num[indx_new_list] = cur_num
+    indx_new_list -= 1
     indx_origin_list -= 1
 
 print(f'Новый список: {list_of_num}')
