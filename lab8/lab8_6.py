@@ -4,7 +4,6 @@ if matrix == False:
     print("Вы ничего не ввели")
     exit()
 
-
 max_num_over_first = float("-inf") #Максимальное значение над главной диагональю
 min_num_under_second = float("inf") #Минимальное значение под побочной диагональю
 print("\nИзначальная матрица:")

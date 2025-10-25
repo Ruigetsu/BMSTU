@@ -32,4 +32,4 @@ for row_indx in range(len(matrix)):
     else:
         print(row_to_print)
 
-print(f"\nНаибольшее среднее арифмитическое имеет строка {indx_of_max_avg+1} = {max_avg}")
+print(f"\nНаибольшее среднее арифмитическое имеет строка {matrix[indx_of_max_avg]} = {max_avg}")
