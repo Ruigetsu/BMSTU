@@ -22,8 +22,15 @@ for row_indx in range(len(matrix)):
     else:
         print(row_to_print)
 
+matrix_len = len(matrix)
+for i in range(matrix_len // 2):
+    for j in range(i, matrix_len - 1 - i):
+        temporary = matrix[i][j]
+        matrix[i][j] = matrix[matrix_len - 1 - j][i]
+        matrix[matrix_len - 1 - j][i] = matrix[matrix_len - 1 - i][matrix_len - 1 - j]
+        matrix[matrix_len - 1 - i][matrix_len - 1 - j] = matrix[j][matrix_len - 1 - i]
+        matrix[j][matrix_len - 1 - i] = temporary
 
-matrix = [list(row[::-1]) for row in list(zip(*matrix))]
 print("\nНовая матрица после поворота по часовой:")
 for row_indx in range(len(matrix)):
     row_to_print = " "
@@ -41,7 +48,13 @@ for row_indx in range(len(matrix)):
     else:
         print(row_to_print)
 
-matrix = [list(row) for row in reversed(list(zip(*matrix)))]
+for i in range(matrix_len // 2):
+    for j in range(i, matrix_len - 1 - i):
+        temporary = matrix[i][j]
+        matrix[i][j] = matrix[j][matrix_len - 1 - i]
+        matrix[j][matrix_len - 1 - i] = matrix[matrix_len - 1 - i][matrix_len - 1 - j]
+        matrix[matrix_len - 1 - i][matrix_len - 1 - j] = matrix[matrix_len - 1 - j][i]
+        matrix[matrix_len - 1 - j][i] = temporary
 
 print("\nНовая матрица после поворота по часовой:")
 for row_indx in range(len(matrix)):

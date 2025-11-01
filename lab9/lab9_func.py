@@ -42,6 +42,36 @@ def check_int(string):
             num += i
     return int(num)
 
+def matrix_str_input():
+    matrix = []
+    row_number = 1
+    print("Введите строки матрицы, её ширина будет определена по первой введённой строке\n\
+Нажмите Enter, чтобы закончить ввод")
+    
+    matrix_width = None 
+    while True: 
+        row = []
+        row_input = input(f"Введите числа строки №{row_number} через пробел:").split()
+        
+        if len(row_input) == 0:
+            break
+        
+        for string in row_input:
+            if len(string) > 1:
+                return False
+            else:
+                row.append(string)
+        if matrix_width is None:
+            matrix_width = len(row)
+        else: 
+            if len(row) != matrix_width:
+                print("Вы нарушили ширину матрицы, последняя строка не будет добавлена")
+                continue
+        matrix.append(row)
+        row_number += 1
+
+    return matrix if len(matrix) > 0 else False
+
 def matrix_input():
     matrix = []
     row_number = 1
