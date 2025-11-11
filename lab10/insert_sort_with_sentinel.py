@@ -25,10 +25,9 @@ def insertion_sort_with_sentinel(arr):
                 j -= 1
             else:
                 break
-        
-        arr[j + 1] = key
-        swaps += 1
-    
+        if j+1 != i: 
+            arr[j + 1] = key
+            swaps += 1
     arr.pop(0) #Удаляем барьер
     return arr, iterations, swaps
 
@@ -41,7 +40,7 @@ else:
 
 sizes = input_list("Введите размерности через пробел: ")
 
-if arr[0] == True: 
+if sizes[0] == True: 
     data = generate_test_data(sizes[1])
     first_row = " "*32 + "|"
     second_row = " "*32 + "|"
@@ -49,10 +48,11 @@ if arr[0] == True:
         colomn = f"Размерность = {i}"
         first_row += f"{colomn:^30} |"
         second_row += f"{"Время":^15}" + f"{"Перестановки":^15} |"
-    print(first_row)
-    print("-"*len(first_row))
-    print(second_row)
-    print("-"*len(first_row))
+    print(f"{first_row}\n\
+{"-"*len(first_row)}\n\
+{second_row}\n\
+{"-"*len(first_row)}")
+
     for arr_types in range(len(data)):
         if arr_types == 0:
             str_to_print = f"{"Упорядоченный список":^32}|"
@@ -68,4 +68,4 @@ if arr[0] == True:
         print(str_to_print)
 
 else: 
-    print(arr[1])
+    print(sizes[1])
