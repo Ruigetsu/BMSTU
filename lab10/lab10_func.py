@@ -26,8 +26,11 @@ def check(string):
         else:
             return False
     if is_exp:
-        if check(num_after_exp):
-                return int(num)*10**check(num_after_exp)
+        if len(num_after_exp) > 0:
+            if check(num_after_exp):
+                    return int(num)*10**check(num_after_exp)
+            else:
+                return False
         else:
             return False
 
@@ -35,10 +38,12 @@ def check(string):
 
 def input_list(invite):
     arr = list(map(str,input(invite).split()))
+    if len(arr) == 0:
+        return False, f"Вы ввели пустой массив"
     new_arr = []
     for i in arr: 
         if check(i) is False: 
-            return False, f"число {i} не целого типа, введите массив заного"
+            return False, f"{i} не целого типа, введите массив заного"
         else:
             new_arr.append(check(i))
     return True, new_arr
