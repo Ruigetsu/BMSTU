@@ -30,6 +30,7 @@ def insertion_sort_with_sentinel(arr):
             swaps += 1
     arr.pop(0) #Удаляем барьер
     return arr, iterations, swaps
+    
 while True: 
     arr = input_list("Введите элементы массива через пробел: ")
     if arr[0] == True:
@@ -71,3 +72,5 @@ while True:
         break
     else: 
         print(sizes[1])
+
+#делать рандомную дату, сортировать а потом его reverse()
