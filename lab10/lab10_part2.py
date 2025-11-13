@@ -1,36 +1,7 @@
 import time
 import sys
-from lab10_func import input_list,generate_test_data,check
+from lab10_func import generate_test_data,check, insertion_sort_with_sentinel
 
-def insertion_sort_with_sentinel(arr):
-    n = len(arr)
-    
-    iterations = 0
-    swaps = 0
-    
-    sentinel = min(arr) - 1  # Барьер, значение гарантированно меньше всех элементов
-    arr.insert(0, sentinel)
-    
-    # Сортируем массив с барьером
-    for i in range(2, n + 1):
-        iterations += 1
-        key = arr[i]
-        j = i - 1
-        
-        while True:
-            iterations += 1
-
-            if arr[j] > key:
-                arr[j + 1] = arr[j]
-                swaps += 1
-                j -= 1
-            else:
-                break
-        if j+1 != i: 
-            arr[j + 1] = key
-            swaps += 1
-    arr.pop(0) #Удаляем барьер
-    return arr, iterations, swaps
 while True:
     N1 = input("Введите размерность N1: ")
     if check(N1) is not False:
@@ -120,10 +91,10 @@ for i in range(len(x_tick_vals)):
             if t[1] == "0":
                 row[p] = "|"
         if i == 0:
-            row[pos] = "*"
+            row[pos] = "*" #Отсортированный массив
         elif i == 1:
-            row[pos] = "-"
+            row[pos] = "-" #Случайный массив
         else:
-            row[pos] = "+"
+            row[pos] = "+" #Отсортированный в обратном порядке
 
         print(f"{x:.1f} | {''.join(row)}")
