@@ -1,7 +1,6 @@
-import random
 import time
 import sys
-
+from sortings_func import generate_test_data
 def quick_sort(arr):
     """
     10. Быстрая сортировка (рекурсивная версия с подсчетом вызовов)
@@ -54,18 +53,6 @@ def quick_sort(arr):
     
     return iterations[0], comparisons[0], swaps[0], recursive_calls[0]
 
-def generate_test_data(size=1000, data_type='random'):
-    """
-    Генерация тестовых данных
-    """
-    if data_type == 'random':
-        return [random.randint(1, 100000) for _ in range(size)]
-    elif data_type == 'sorted':
-        return list(range(1, size + 1))
-    elif data_type == 'reversed':
-        return list(range(size, 0, -1))
-    else:
-        return [random.randint(1, 100000) for _ in range(size)]
 
 def run_quick_sort_test():
     """

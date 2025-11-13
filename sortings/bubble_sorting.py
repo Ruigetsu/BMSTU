@@ -1,5 +1,6 @@
 import random
 import time
+from sortings_func import generate_test_data
 
 def bubble_sort_with_count(arr):
     """
@@ -22,19 +23,6 @@ def bubble_sort_with_count(arr):
                 swaps += 1
     
     return iterations, comparisons, swaps
-
-def generate_test_data(size=1000, data_type='random'):
-    """
-    Генерация тестовых данных
-    """
-    if data_type == 'random':
-        return [random.randint(1, 10000) for _ in range(size)]
-    elif data_type == 'sorted':
-        return list(range(1, size + 1))
-    elif data_type == 'reversed':
-        return list(range(size, 0, -1))
-    else:
-        return [random.randint(1, 10000) for _ in range(size)]
 
 def run_bubble_sort_test():
     """
@@ -75,19 +63,6 @@ def run_bubble_sort_test():
         print(f"Количество обменов: {swaps}")
         print(f"Корректно отсортирован: {'Да' if is_sorted else 'Нет'}")
         print()
-
-"""def detailed_analysis():
-    print("\n=== ДЕТАЛЬНЫЙ АНАЛИЗ ===")
-    
-    # Создаем небольшой список для демонстрации
-    demo_data = [64, 34, 25, 12, 22, 11, 90]
-    print(f"Исходный список: {demo_data}")
-    
-    sorted_data = demo_data.copy()
-    iterations, comparisons, swaps = bubble_sort_with_count(sorted_data)
-    
-    print(f"Отсортированный список: {sorted_data}")
-    print(f"Итерации: {iterations}, Сравнения: {comparisons}, Обмены: {swaps}")"""
 
 def bubble_sort():
     run_bubble_sort_test()

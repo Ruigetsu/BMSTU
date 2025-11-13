@@ -1,11 +1,10 @@
-import random
 import time
-
+from sortings_func import generate_test_data
 def insertion_sort_with_sentinel(arr):
     n = len(arr)
     
     iterations = 0
-    comparisons = 0
+
     swaps = 0
     
     sentinel = min(arr) - 1  # Значение гарантированно меньше всех элементов
@@ -20,7 +19,7 @@ def insertion_sort_with_sentinel(arr):
         # Убираем проверку j >= 0 благодаря барьеру
         while True:
             iterations += 1
-            comparisons += 1
+
             if arr[j] > key:
                 arr[j + 1] = arr[j]
                 swaps += 1
@@ -33,20 +32,7 @@ def insertion_sort_with_sentinel(arr):
     
     arr.pop(0)
     
-    return iterations, comparisons, swaps
-
-def generate_test_data(size=1000, data_type='random'):
-    """
-    Генерация тестовых данных
-    """
-    if data_type == 'random':
-        return [random.randint(1, 10000) for _ in range(size)]
-    elif data_type == 'sorted':
-        return list(range(1, size + 1))
-    elif data_type == 'reversed':
-        return list(range(size, 0, -1))
-    else:
-        return [random.randint(1, 10000) for _ in range(size)]
+    return iterations,swaps
 
 def run_sentinel_sort_test():
     """
