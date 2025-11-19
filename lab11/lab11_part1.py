@@ -1,35 +1,36 @@
+import sys
 from math import *
-from lab11_func import input_num_func, input_int_func
+from lab11_func import input_num_func, input_int_func, trapezoid_method, median_rectangle_method
 
-start = input_num_func("Введите начало отрезка интегрирования: ")
-end = input_num_func("Введите конец отрезка интегрирования: ")
+def f(x):
+    try:
+        y = 1/2/x**0.5
+        return y
+    except ArithmeticError: 
+        return False
+
+def func_perv(x): #первообразная функции f(x)
+    try:
+        y = x**0.5
+        return y
+    except ArithmeticError: 
+        return False
+
+while True:
+    start = input_num_func("Введите начало отрезка интегрирования: ")
+    end = input_num_func("Введите конец отрезка интегрирования: ")
+    if f(start) == False or f(end) == False: 
+        print("Метод трапеций нельзя использовать, т.к. функция неопределена на концах отрезка интегрирования, введите начало и конец отрезка заного")
+    else: 
+        break
 N1 = input_int_func("Введите N1: ")
 N2 = input_int_func("Введите N2: ")
 
-def f(x):
-    return x**2 - 2*x + 1 
-
-def func_perv(x): #первообразная функции f(x)
-    return x**3/3 - x**2 + x
-
-true_value = round(func_perv(end) - func_perv(start),4)
-
-def trapezoid_method(start,end,N): 
-    s = 0 #Сумма
-    step = (end - start)/N #step = delta(x)
-    s += (f(start) + f(end))/2
-    for i in range(1,N):
-        x = start + i*step
-        s += f(x)
-    return s * step
-
-def median_rectangle_method(start,end,N):
-    s = 0
-    step = (end - start)/N
-    for i in range(N): 
-        x = start + i*step 
-        s += f(x + step/2)
-    return s * step
+if func_perv(end) is not False and func_perv(start) is not False:
+    true_value = round(func_perv(end) - func_perv(start),4)
+else: 
+    print("Нельзя вычислить реальное значение интеграла через формулу ньютона-лейбница, т.к. первообразная неопределена в крайних точках отрезка")
+    sys.exit()
 
 errors = [] #погрешности 4 измерений
 
@@ -39,17 +40,17 @@ for method in range(1,3):
     if method == 1: 
         str_to_print = f"{"Срединные прямоугольники":^24}|"
     else:
-        str_to_print = f"{"Трапециями":^24}|"
+        str_to_print += f"\n{"Трапециями":^24}|"
     for N in [N1,N2]: 
         if method == 1:
-            val = trapezoid_method(start,end,N)
+            val = median_rectangle_method(f,start,end,N)
             str_to_print += f"{val:^14g}|"
             errors.append((abs(val-true_value), abs((val-true_value)/true_value)*100))
         else:
-            val = median_rectangle_method(start,end,N)
-            str_to_print += f"{val:^14g}|"
+            val = trapezoid_method(f,start,end,N)
+            str_to_print += f"{val:^14f}|"
             errors.append((abs(val-true_value), abs((val-true_value)/true_value)*100))
-    print(str_to_print)
+print(str_to_print)
 
 print(f"\nПогрешности\n\
 {" "*24}|{"N1":^26}|{"N2":^26}|\n\
@@ -78,11 +79,17 @@ print(str_to_print)
 
 EPS = input_num_func("Введите точность (EPS): ")
 N = 1
-if indx_of_method == 1: 
-    while abs(trapezoid_method(start,end,N) - trapezoid_method(start,end,2*N)) >= EPS:
+if indx_of_method == 0: 
+    while abs(trapezoid_method(f,start,end,N) - trapezoid_method(f,start,end,2*N)) >= EPS:
         N += 1
-    print(f"Кол-во необходимых участков разбиения для метода1 = {N}, приближенное значение интеграла при данном N = {trapezoid_method(start,end,N)}")
+    if N > 1:
+        print(f"Кол-во необходимых участков разбиения для метода1 = {N}, приближенное значение интеграла при данном N = {trapezoid_method(f,start,end,N)}")
+    else: 
+        print("Необходимая точность и так достигнута")
 else: 
-    while abs(median_rectangle_method(start,end,N) - median_rectangle_method(start,end,2*N)) >= EPS:
+    while abs(median_rectangle_method(f,start,end,N) - median_rectangle_method(f,start,end,2*N)) >= EPS:
         N += 1
-    print(f"Кол-во необходимых участков разбиения для метода2 = {N}, приближенное значение интеграла при данном N = {median_rectangle_method(start,end,N)}")
+    if N > 1:
+        print(f"Кол-во необходимых участков разбиения для метода2 = {N}, приближенное значение интеграла при данном N = {median_rectangle_method(f,start,end,N)}")
+    else: 
+        print("Необходимая точность и так достигнута")
