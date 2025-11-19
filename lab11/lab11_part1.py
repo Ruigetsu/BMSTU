@@ -33,13 +33,13 @@ def median_rectangle_method(start,end,N):
 
 errors = [] #погрешности 4 измерений
 
-print(f"\n{" "*9}|{"N1":^14}|{"N2":^14}|\n\
-{"-"*40}")
+print(f"\n{" "*24}|{"N1":^14}|{"N2":^14}|\n\
+{"-"*55}")
 for method in range(1,3): 
     if method == 1: 
-        str_to_print = f"{"Метод 1":^9}|"
+        str_to_print = f"{"Срединные прямоугольники":^24}|"
     else:
-        str_to_print = f"{"Метод 2":^9}|"
+        str_to_print = f"{"Трапециями":^24}|"
     for N in [N1,N2]: 
         if method == 1:
             val = trapezoid_method(start,end,N)
@@ -52,9 +52,9 @@ for method in range(1,3):
     print(str_to_print)
 
 print(f"\nПогрешности\n\
-{" "*9}|{"N1":^26}|{"N2":^26}|\n\
-{" "*9}|{"Абсолютная":^12}{"Относительная%":13}|{"Абсолютная":^12}{"Относительная%":13}|\n\
-{"-"*64}")
+{" "*24}|{"N1":^26}|{"N2":^26}|\n\
+{" "*24}|{"Абсолютная":^12}{"Относительная%":13}|{"Абсолютная":^12}{"Относительная%":13}|\n\
+{"-"*79}")
 
 indx_of_method = 0
 min_val = float("inf")
@@ -64,14 +64,14 @@ for i in range(len(errors)):
             min_val = errors[i][0]
             indx_of_method = i//2
 
-        str_to_print = f"{"Метод 1":^9}|{errors[i][0]:^13g}{errors[i][1]:^13.3g}|"
+        str_to_print = f"{"Срединные прямоугольники":^24}|{errors[i][0]:^13g}{errors[i][1]:^13.3g}|"
     elif i == 2:
         if errors[i][0] < min_val: 
             min_val = errors[i][0]
             indx_of_method = i//2
 
         print(str_to_print)
-        str_to_print = f"{"Метод 2":^9}|{errors[i][0]:^13g}{errors[i][1]:^13.3g}|"
+        str_to_print = f"{"Трапециями":^24}|{errors[i][0]:^13g}{errors[i][1]:^13.3g}|"
     else:
         str_to_print += f"{errors[i][0]:^13g}{errors[i][1]:^13.3g}|"
 print(str_to_print)
