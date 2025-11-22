@@ -3,10 +3,10 @@ from math import *
 from lab11_func import input_num_func, input_int_func, trapezoid_method, median_rectangle_method
 
 def f(x):
-    return -x**2 - 1
+    return x**2
 
 def func_perv(x): #первообразная функции f(x)
-    return -x**3/3 - x
+    return x**3 / 3
 
 while True:
     start = input_num_func("Введите начало отрезка интегрирования: ")
@@ -32,6 +32,11 @@ except (ArithmeticError, ValueError) as e:
 
 errors = [] #погрешности 4 измерений
 
+"""for N in [N1,N2]: 
+    if median_rectangle_method(f,start,end,N) is False or trapezoid_method(f,start,end,N) is False:
+        print("функция неопределена на отрезке")
+        sys.exit()"""
+
 print(f"\n{" "*24}|{"N1":^14}|{"N2":^14}|\n\
 {"-"*55}")
 for method in range(1,3): 
@@ -56,7 +61,7 @@ for method in range(1,3):
                 errors.append((abs(val-true_value), None))
 print(str_to_print)
 
-print(f"\nПогрешности\n\
+print(f"\n\nПогрешности\n\
 {" "*24}|{"N1":^26}|{"N2":^26}|\n\
 {" "*24}|{"Абсолютная":^12}{"Относительная%":13}|{"Абсолютная":^12}{"Относительная%":13}|\n\
 {"-"*79}")
@@ -95,11 +100,13 @@ print(str_to_print)
 EPS = input_num_func("Введите точность (EPS): ")
 N = 1
 if indx_of_method == 1: 
+    print("Наиболее точный метод - Трапеции") 
     while abs(median_rectangle_method(f,start,end,N) - median_rectangle_method(f,start,end,2*N)) >= EPS:
         N += 1
     print(f"Кол-во необходимых участков разбиения для метода срединных прямоугольников = {N},\
 приближенное значение интеграла при данном N = {trapezoid_method(f,start,end,N)}")
-else: 
+else:
+    print("Наиболее точный метод - Срединные прямоугольник") 
     while abs(trapezoid_method(f,start,end,N) - trapezoid_method(f,start,end,2*N)) >= EPS:
         N += 1
     print(f"Кол-во необходимых участков разбиения для метода трапеций = {N},\
