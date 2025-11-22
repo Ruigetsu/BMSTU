@@ -1,8 +1,33 @@
+def trapezoid_method(f,start,end,N): 
+    s = 0 #Сумма
+    step = (end - start)/N #step = delta(x)
+    try:
+        s += (f(start) + f(end))/2
+        for i in range(1,N):
+            x = start + i*step
+            s += f(x)
+        return s * step
+    except (ArithmeticError, ValueError): 
+        return False
+
+def median_rectangle_method(f,start,end,N):
+    s = 0
+    step = (end - start)/N
+    try:
+        for i in range(N): 
+            x = start + i*step 
+            s += f(x + step/2)
+        return s * step
+    except (ArithmeticError, ValueError): 
+        return False
+
 def check_int(string):
     symb = "0123456879"
     is_exp = False
     num = ""
     num_after_exp = ""
+    if len(string) == 0:
+        return False 
     for i in range(len(string)):
         if is_exp:
             if string[i] in symb:
@@ -100,6 +125,7 @@ def input_int_func(string):
             print(f"Некоректное значение '{var}'") 
         else:
             return checked
+        
 """
 def f(x): 
     return x**0.5
