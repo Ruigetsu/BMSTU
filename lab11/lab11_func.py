@@ -7,7 +7,7 @@ def trapezoid_method(f,start,end,N):
             x = start + i*step
             s += f(x)
         return s * step
-    except ArithmeticError: 
+    except (ArithmeticError, ValueError): 
         return False
 
 def median_rectangle_method(f,start,end,N):
@@ -18,7 +18,7 @@ def median_rectangle_method(f,start,end,N):
             x = start + i*step 
             s += f(x + step/2)
         return s * step
-    except ArithmeticError: 
+    except (ArithmeticError, ValueError): 
         return False
 
 def check_int(string):
@@ -26,6 +26,8 @@ def check_int(string):
     is_exp = False
     num = ""
     num_after_exp = ""
+    if len(string) == 0:
+        return False 
     for i in range(len(string)):
         if is_exp:
             if string[i] in symb:
