@@ -88,4 +88,7 @@ def lab12_7(array, letter):
             new_line = line[end_pos + 1:]
             if new_line.strip():
                 new_array.append(new_line)
+    for i in range(len(new_array)): 
+        if len(new_array[i]) == 0: 
+            new_array.pop(i)
     return max_sentence, new_array

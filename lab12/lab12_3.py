@@ -8,7 +8,7 @@ def lab12_3(array):
             # Если одно слово или пустая строка - просто добавляем
             new_array.append(line)
         elif len(words) <= 1: 
-            new_array.append(line.center(max_len))
+            new_array.append(line)
         else:
             # Вычисляем пробелы для выравнивания
             total_spaces = max_len - sum(len(word) for word in words)
