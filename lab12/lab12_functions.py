@@ -1,5 +1,8 @@
 def print_array(array): 
     str_to_print = ""
+    """if len(array) == 0:
+        print("")
+        return"""
     for i in array: 
         str_to_print += f"{i}\n"
     print(str_to_print)
